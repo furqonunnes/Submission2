@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Submission 2</string>
+
+    <string name="desc">Image</string>
+
+    <string name="submission_1">Submission 1</string>
+
+    <string name="username">Username</string>
+    <string name="name">Name</string>
+    <string name="location">Location</string>
+    <string name="repository">Repository</string>
+    <string name="company">Company</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="search">Masukkan pencarian</string>
+</resources>
