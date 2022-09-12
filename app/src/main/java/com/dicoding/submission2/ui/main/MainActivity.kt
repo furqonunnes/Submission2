@@ -2,9 +2,9 @@ package com.dicoding.submission2.ui.main
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.KeyEvent
 import android.view.Menu
 import android.view.View
 import android.widget.Toast
@@ -12,7 +12,9 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.submission2.R
+import com.dicoding.submission2.data.model.User
 import com.dicoding.submission2.databinding.ActivityMainBinding
+import com.dicoding.submission2.ui.main.detail.DetailActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,6 +22,16 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: ViewModel
     private lateinit var adapter: UserAdapter
+
+    private fun showSelectedUser(user: User) {
+        Toast.makeText(this, "Kamu Memilih" + user.login, Toast.LENGTH_SHORT).show()
+
+        val pindah = Intent(this@MainActivity, DetailActivity::class.java)
+
+//        val moveWithObjectIntent = Intent(this@MainActivity, DetailActivity::class.java)
+//        moveWithObjectIntent.putExtra(DetailActivity.EXTRA_PERSON, user)
+        startActivity(pindah)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,17 +47,11 @@ class MainActivity : AppCompatActivity() {
             rvUser.setHasFixedSize(true)
             rvUser.adapter = adapter
 
-//            btnSearch.setOnClickListener {
-//                searchUser()
-//            }
-
-//            etQuery.setOnKeyListener { v, keycode, event ->
-//                if (event.action == KeyEvent.ACTION_DOWN && keycode == KeyEvent.KEYCODE_ENTER){
-//                    searchUser()
-//                    return@setOnKeyListener true
-//                }
-//                return@setOnKeyListener false
-//            }
+            adapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback{
+                override fun onItemClicked(data: User) {
+                    showSelectedUser(data)
+                }
+            })
         }
 
         viewModel.getSearchUsers().observe(this) {
@@ -55,15 +61,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-//    private fun searchUser(){
-//        binding.apply {
-//            val query = etQuery.text.toString()
-//            if (query.isEmpty()) return
-//            showLoading(true)
-//            viewModel.setSearchUsers(query)
-//        }
-//    }
 
     private fun showLoading (state : Boolean){
         if (state){
@@ -84,6 +81,7 @@ class MainActivity : AppCompatActivity() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 viewModel.setSearchUsers(query)
+                showLoading(true)
                 Toast.makeText(this@MainActivity, query, Toast.LENGTH_SHORT).show()
                 searchView.clearFocus()
                 return true

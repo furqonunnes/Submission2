@@ -11,6 +11,12 @@ class UserAdapter: RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     private val list = ArrayList<User>()
 
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     fun setList(users: ArrayList<User>){
         list.clear()
         list.addAll(users)
@@ -37,7 +43,14 @@ class UserAdapter: RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         holder.bind(list[position])
+        holder.itemView.setOnClickListener {
+            onItemClickCallback.onItemClicked(list[holder.adapterPosition])
+        }
     }
 
     override fun getItemCount(): Int = list.size
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: User)
+    }
 }
