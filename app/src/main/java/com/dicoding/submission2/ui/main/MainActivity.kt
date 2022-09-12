@@ -25,9 +25,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun showSelectedUser(user: User) {
         Toast.makeText(this, "Kamu Memilih" + user.login, Toast.LENGTH_SHORT).show()
-
-//        val pindah = Intent(this@MainActivity, DetailActivity::class.java)
-
         val moveWithObjectIntent = Intent(this@MainActivity, DetailActivity::class.java)
         moveWithObjectIntent.putExtra(DetailActivity.EXTRA_USERNAME, user.login)
         startActivity(moveWithObjectIntent)
