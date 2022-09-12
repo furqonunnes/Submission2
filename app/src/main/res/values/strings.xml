@@ -1,9 +1,7 @@
 <resources>
-    <string name="app_name">Submission 2</string>
-
+    <string name="app_name">GitHub User</string>
+    <string name="main">Masukkan Username yang Ingin Di Cari</string>
     <string name="desc">Image</string>
-
-    <string name="submission_1">Submission 1</string>
 
     <string name="tab_text_1">Followers</string>
     <string name="tab_text_2">Following</string>
@@ -16,4 +14,5 @@
     <string name="followers">Followers</string>
     <string name="following">Following</string>
     <string name="search">Masukkan pencarian</string>
+
 </resources>

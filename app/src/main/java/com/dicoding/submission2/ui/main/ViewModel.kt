@@ -1,6 +1,7 @@
 package com.dicoding.submission2.ui.main
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,15 +15,15 @@ import retrofit2.Response
 class ViewModel : ViewModel() {
     val listUser = MutableLiveData<ArrayList<User>>()
 
-    fun setSearchUsers(query: String){
+    fun setSearchUsers(query: String) {
         RetrofitClient.apiInstance
             .getSearchUsers(query)
-            .enqueue(object : Callback<UserResponse>{
+            .enqueue(object : Callback<UserResponse> {
                 override fun onResponse(
                     call: Call<UserResponse>,
                     response: Response<UserResponse>
                 ) {
-                    if (response.isSuccessful){
+                    if (response.isSuccessful) {
                         listUser.postValue(response.body()?.items)
                     }
                 }
@@ -33,7 +34,7 @@ class ViewModel : ViewModel() {
             })
     }
 
-    fun getSearchUsers(): LiveData<ArrayList<User>>{
+    fun getSearchUsers(): LiveData<ArrayList<User>> {
         return listUser
     }
 }

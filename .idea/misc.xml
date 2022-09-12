@@ -3,12 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/furqon/AndroidStudioProjects/Dicoding/Submission2/app/src/main/res/drawable-v24/ic_icon.xml" value="0.1" />
         <entry key="..\:/Users/furqon/AndroidStudioProjects/Dicoding/Submission2/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.112" />
-        <entry key="..\:/Users/furqon/AndroidStudioProjects/Dicoding/Submission2/app/src/main/res/layout/activity_detail.xml" value="0.25" />
-        <entry key="..\:/Users/furqon/AndroidStudioProjects/Dicoding/Submission2/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/furqon/AndroidStudioProjects/Dicoding/Submission2/app/src/main/res/drawable/ic_icon.xml" value="0.1" />
+        <entry key="..\:/Users/furqon/AndroidStudioProjects/Dicoding/Submission2/app/src/main/res/layout/activity_detail.xml" value="0.33" />
+        <entry key="..\:/Users/furqon/AndroidStudioProjects/Dicoding/Submission2/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/furqon/AndroidStudioProjects/Dicoding/Submission2/app/src/main/res/layout/activity_splash_screen.xml" value="0.18342391304347827" />
         <entry key="..\:/Users/furqon/AndroidStudioProjects/Dicoding/Submission2/app/src/main/res/layout/fragment_follow.xml" value="0.16" />
         <entry key="..\:/Users/furqon/AndroidStudioProjects/Dicoding/Submission2/app/src/main/res/layout/item_user.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/furqon/AndroidStudioProjects/Dicoding/Submission2/app/src/main/res/menu/option_menu.xml" value="0.18" />
+        <entry key="..\:/Users/furqon/AndroidStudioProjects/Dicoding/Submission2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.218" />
       </map>
     </option>
   </component>

@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.submission2.R
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: UserAdapter
 
     private fun showSelectedUser(user: User) {
-        Toast.makeText(this, "Kamu Memilih" + user.login, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Kamu Memilih " + user.login, Toast.LENGTH_SHORT).show()
         val moveWithObjectIntent = Intent(this@MainActivity, DetailActivity::class.java)
         moveWithObjectIntent.putExtra(DetailActivity.EXTRA_USERNAME, user.login)
         startActivity(moveWithObjectIntent)
@@ -44,7 +45,7 @@ class MainActivity : AppCompatActivity() {
             rvUser.setHasFixedSize(true)
             rvUser.adapter = adapter
 
-            adapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback{
+            adapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback {
                 override fun onItemClicked(data: User) {
                     showSelectedUser(data)
                 }
@@ -55,15 +56,24 @@ class MainActivity : AppCompatActivity() {
             if (it != null) {
                 adapter.setList(it)
                 showLoading(false)
+                showText(false)
             }
         }
     }
 
-    private fun showLoading (state : Boolean){
-        if (state){
+     private fun showLoading(state: Boolean) {
+        if (state) {
             binding.progressBar.visibility = View.VISIBLE
         } else {
             binding.progressBar.visibility = View.GONE
+        }
+    }
+
+    private fun showText(state: Boolean) {
+        if (state) {
+            binding.tvMain.visibility = View.VISIBLE
+        } else {
+            binding.tvMain.visibility = View.GONE
         }
     }
 
@@ -87,7 +97,6 @@ class MainActivity : AppCompatActivity() {
                 return false
             }
         })
-
 
         return true
     }

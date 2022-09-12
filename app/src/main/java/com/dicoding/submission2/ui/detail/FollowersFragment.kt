@@ -9,7 +9,7 @@ import com.dicoding.submission2.R
 import com.dicoding.submission2.databinding.FragmentFollowBinding
 import com.dicoding.submission2.ui.main.UserAdapter
 
-class FollowersFragment: Fragment(R.layout.fragment_follow) {
+class FollowersFragment : Fragment(R.layout.fragment_follow) {
 
     private var _binding: FragmentFollowBinding? = null
     private val binding get() = _binding!!
@@ -24,8 +24,6 @@ class FollowersFragment: Fragment(R.layout.fragment_follow) {
         username = args?.getString(DetailActivity.EXTRA_USERNAME).toString()
         _binding = FragmentFollowBinding.bind(view)
 
-
-
         adapter = UserAdapter()
         adapter.notifyDataSetChanged()
 
@@ -36,7 +34,10 @@ class FollowersFragment: Fragment(R.layout.fragment_follow) {
         }
 
         showLoading(true)
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[FollowersViewModel::class.java]
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.NewInstanceFactory()
+        )[FollowersViewModel::class.java]
         viewModel.setListFollowers(username)
         viewModel.getListFollowers().observe(viewLifecycleOwner) {
             if (it != null) {
@@ -52,8 +53,8 @@ class FollowersFragment: Fragment(R.layout.fragment_follow) {
         _binding = null
     }
 
-    private fun showLoading (state : Boolean){
-        if (state){
+    private fun showLoading(state: Boolean) {
+        if (state) {
             binding.progressBar.visibility = View.VISIBLE
         } else {
             binding.progressBar.visibility = View.GONE

@@ -24,7 +24,10 @@ class DetailActivity : AppCompatActivity() {
         val bundle = Bundle()
         bundle.putString(EXTRA_USERNAME, username)
 
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[DetailViewModel::class.java]
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.NewInstanceFactory()
+        )[DetailViewModel::class.java]
         username?.let { viewModel.setUserDetail(it) }
         viewModel.getUserDetail().observe(this) {
             if (it != null) {
@@ -57,7 +60,7 @@ class DetailActivity : AppCompatActivity() {
 
     }
 
-    companion object{
+    companion object {
         const val EXTRA_USERNAME = "extra_username"
     }
 }

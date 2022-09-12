@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import com.dicoding.submission2.data.model.User
 import com.dicoding.submission2.databinding.ItemUserBinding
 
-class UserAdapter: RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     private val list = ArrayList<User>()
 
@@ -17,14 +17,15 @@ class UserAdapter: RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
         this.onItemClickCallback = onItemClickCallback
     }
 
-    fun setList(users: ArrayList<User>){
+    fun setList(users: ArrayList<User>) {
         list.clear()
         list.addAll(users)
         notifyDataSetChanged()
     }
 
-    inner class UserViewHolder(val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(user: User){
+    inner class UserViewHolder(val binding: ItemUserBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(user: User) {
             binding.apply {
                 Glide.with(itemView)
                     .load(user.avatar_url)
