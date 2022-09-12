@@ -5,6 +5,9 @@
 
     <string name="submission_1">Submission 1</string>
 
+    <string name="tab_text_1">Followers</string>
+    <string name="tab_text_2">Following</string>
+
     <string name="username">Username</string>
     <string name="name">Name</string>
     <string name="location">Location</string>

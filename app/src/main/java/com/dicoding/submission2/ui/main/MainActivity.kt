@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.submission2.R
 import com.dicoding.submission2.data.model.User
 import com.dicoding.submission2.databinding.ActivityMainBinding
-import com.dicoding.submission2.ui.main.detail.DetailActivity
+import com.dicoding.submission2.ui.detail.DetailActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,11 +26,11 @@ class MainActivity : AppCompatActivity() {
     private fun showSelectedUser(user: User) {
         Toast.makeText(this, "Kamu Memilih" + user.login, Toast.LENGTH_SHORT).show()
 
-        val pindah = Intent(this@MainActivity, DetailActivity::class.java)
+//        val pindah = Intent(this@MainActivity, DetailActivity::class.java)
 
-//        val moveWithObjectIntent = Intent(this@MainActivity, DetailActivity::class.java)
-//        moveWithObjectIntent.putExtra(DetailActivity.EXTRA_PERSON, user)
-        startActivity(pindah)
+        val moveWithObjectIntent = Intent(this@MainActivity, DetailActivity::class.java)
+        moveWithObjectIntent.putExtra(DetailActivity.EXTRA_USERNAME, user.login)
+        startActivity(moveWithObjectIntent)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
