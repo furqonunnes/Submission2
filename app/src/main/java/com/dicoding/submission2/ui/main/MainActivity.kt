@@ -9,7 +9,6 @@ import android.view.Menu
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.submission2.R
@@ -53,7 +52,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.getSearchUsers().observe(this) {
-            if (it != null) {
+            if (it.isNullOrEmpty()) {
+                Toast.makeText(this, "Username tidak ditemukan", Toast.LENGTH_SHORT).show()
+                showLoading(false)
+            } else {
                 adapter.setList(it)
                 showLoading(false)
                 showText(false)
@@ -89,7 +91,6 @@ class MainActivity : AppCompatActivity() {
             override fun onQueryTextSubmit(query: String): Boolean {
                 viewModel.setSearchUsers(query)
                 showLoading(true)
-                Toast.makeText(this@MainActivity, query, Toast.LENGTH_SHORT).show()
                 searchView.clearFocus()
                 return true
             }

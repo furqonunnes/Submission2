@@ -1,11 +1,10 @@
 package com.dicoding.submission2.ui.main
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.dicoding.submission2.api.RetrofitClient
+import com.dicoding.submission2.api.ApiConfig
 import com.dicoding.submission2.data.model.User
 import com.dicoding.submission2.data.model.UserResponse
 import retrofit2.Call
@@ -16,7 +15,7 @@ class ViewModel : ViewModel() {
     val listUser = MutableLiveData<ArrayList<User>>()
 
     fun setSearchUsers(query: String) {
-        RetrofitClient.apiInstance
+        ApiConfig.apiInstance
             .getSearchUsers(query)
             .enqueue(object : Callback<UserResponse> {
                 override fun onResponse(

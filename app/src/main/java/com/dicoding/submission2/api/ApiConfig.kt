@@ -3,7 +3,7 @@ package com.dicoding.submission2.api
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object RetrofitClient {
+object ApiConfig {
     private const val BASE_URL = "https://api.github.com/"
 
     val retrofit = Retrofit.Builder()

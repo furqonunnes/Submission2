@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.dicoding.submission2.api.RetrofitClient
+import com.dicoding.submission2.api.ApiConfig
 import com.dicoding.submission2.data.model.User
 import retrofit2.Call
 import retrofit2.Callback
@@ -14,7 +14,7 @@ class FollowingViewModel : ViewModel() {
     val listFollowing = MutableLiveData<ArrayList<User>>()
 
     fun setListFollowing(username: String) {
-        RetrofitClient.apiInstance
+        ApiConfig.apiInstance
             .getUserFollowing(username)
             .enqueue(object : Callback<ArrayList<User>> {
                 override fun onResponse(
