@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.Toast
@@ -22,13 +23,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: ViewModel
     private lateinit var adapter: UserAdapter
-
-    private fun showSelectedUser(user: User) {
-        Toast.makeText(this, getString(R.string.kamu_memilih) + user.login, Toast.LENGTH_SHORT).show()
-        val moveWithObjectIntent = Intent(this@MainActivity, DetailActivity::class.java)
-        moveWithObjectIntent.putExtra(DetailActivity.EXTRA_USERNAME, user.login)
-        startActivity(moveWithObjectIntent)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,11 +46,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.getSearchUsers().observe(this) {
+            Log.d("Coba", it.toString())
             if (it.isNullOrEmpty()) {
                 Toast.makeText(this, getString(R.string.not_found), Toast.LENGTH_SHORT).show()
             } else {
                 adapter.setData(it)
                 showLoading(false)
+                hideText()
             }
         }
     }
@@ -69,8 +65,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun textGone() {
+    private fun hideText() {
             binding.tvMain.visibility = View.GONE
+    }
+
+    private fun showSelectedUser(user: User) {
+        Toast.makeText(this, getString(R.string.kamu_memilih) + user.login, Toast.LENGTH_SHORT).show()
+        val moveWithObjectIntent = Intent(this@MainActivity, DetailActivity::class.java)
+        moveWithObjectIntent.putExtra(DetailActivity.EXTRA_USERNAME, user.login)
+        startActivity(moveWithObjectIntent)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -85,7 +88,7 @@ class MainActivity : AppCompatActivity() {
             override fun onQueryTextSubmit(query: String): Boolean {
                 viewModel.setSearchUsers(query)
                 showLoading(true)
-                textGone()
+                hideText()
                 searchView.clearFocus()
                 return true
             }
