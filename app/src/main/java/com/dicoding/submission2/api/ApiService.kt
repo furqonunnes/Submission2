@@ -1,5 +1,6 @@
 package com.dicoding.submission2.api
 
+import com.dicoding.submission2.BuildConfig
 import com.dicoding.submission2.data.model.DetailUserResponse
 import com.dicoding.submission2.data.model.User
 import com.dicoding.submission2.data.model.UserResponse
@@ -9,7 +10,7 @@ import retrofit2.http.Headers
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-private const val token = "Authorization: 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"
+const val token = BuildConfig.TOKEN
 
 interface Api {
     @GET("search/users")

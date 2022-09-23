@@ -25,7 +25,7 @@ class FollowersFragment : Fragment(R.layout.fragment_follow) {
         _binding = FragmentFollowBinding.bind(view)
 
         adapter = UserAdapter()
-        adapter.notifyDataSetChanged()
+//        adapter.notifyDataSetChanged()
 
         binding.apply {
             rvUser.layoutManager = LinearLayoutManager(activity)
@@ -41,7 +41,7 @@ class FollowersFragment : Fragment(R.layout.fragment_follow) {
         viewModel.setListFollowers(username)
         viewModel.getListFollowers().observe(viewLifecycleOwner) {
             if (it != null) {
-                adapter.setList(it)
+                adapter.setData(it)
                 showLoading(false)
             }
         }

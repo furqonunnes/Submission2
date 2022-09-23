@@ -14,5 +14,7 @@
     <string name="followers">Followers</string>
     <string name="following">Following</string>
     <string name="search">Masukkan pencarian</string>
+    <string name="not_found">Username tidak ditemukan</string>
+    <string name="kamu_memilih">\"Kamu Memilih \"</string>
 
 </resources>

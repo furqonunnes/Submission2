@@ -8,7 +8,7 @@ import android.os.Looper
 import com.dicoding.submission2.databinding.ActivitySplashScreenBinding
 import com.dicoding.submission2.ui.main.MainActivity
 
-class SplashScreen : AppCompatActivity() {
+class SplashScreenActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashScreenBinding
 

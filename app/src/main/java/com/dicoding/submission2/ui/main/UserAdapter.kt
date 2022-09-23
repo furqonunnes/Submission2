@@ -9,7 +9,7 @@ import com.dicoding.submission2.databinding.ItemUserBinding
 
 class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
-    private val list = ArrayList<User>()
+    private var list = ArrayList<User>()
 
     private lateinit var onItemClickCallback: OnItemClickCallback
 
@@ -17,13 +17,20 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
         this.onItemClickCallback = onItemClickCallback
     }
 
-    fun setList(users: ArrayList<User>) {
-        list.clear()
-        list.addAll(users)
-        notifyDataSetChanged()
+//    fun setList(users: ArrayList<User>) {
+//        list.clear()
+//        list.addAll(users)
+//        notifyDataSetChanged()
+//    }
+
+    fun setData(newUserList: List<User>){
+        val diffUtil = DiffUtil(list, newUserList)
+        val diffResult = androidx.recyclerview.widget.DiffUtil.calculateDiff(diffUtil)
+        list = newUserList as ArrayList<User>
+        diffResult.dispatchUpdatesTo(this)
     }
 
-    inner class UserViewHolder(val binding: ItemUserBinding) :
+    inner class UserViewHolder(private val binding: ItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(user: User) {
             binding.apply {

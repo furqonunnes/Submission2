@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: UserAdapter
 
     private fun showSelectedUser(user: User) {
-        Toast.makeText(this, "Kamu Memilih " + user.login, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.kamu_memilih) + user.login, Toast.LENGTH_SHORT).show()
         val moveWithObjectIntent = Intent(this@MainActivity, DetailActivity::class.java)
         moveWithObjectIntent.putExtra(DetailActivity.EXTRA_USERNAME, user.login)
         startActivity(moveWithObjectIntent)
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         adapter = UserAdapter()
-        adapter.notifyDataSetChanged()
+//        adapter.notifyDataSetChanged()
         viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[ViewModel::class.java]
 
         binding.apply {
@@ -53,12 +53,10 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.getSearchUsers().observe(this) {
             if (it.isNullOrEmpty()) {
-                Toast.makeText(this, "Username tidak ditemukan", Toast.LENGTH_SHORT).show()
-                showLoading(false)
+                Toast.makeText(this, getString(R.string.not_found), Toast.LENGTH_SHORT).show()
             } else {
-                adapter.setList(it)
+                adapter.setData(it)
                 showLoading(false)
-                showText(false)
             }
         }
     }
@@ -71,12 +69,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showText(state: Boolean) {
-        if (state) {
-            binding.tvMain.visibility = View.VISIBLE
-        } else {
+    private fun textGone() {
             binding.tvMain.visibility = View.GONE
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -91,6 +85,7 @@ class MainActivity : AppCompatActivity() {
             override fun onQueryTextSubmit(query: String): Boolean {
                 viewModel.setSearchUsers(query)
                 showLoading(true)
+                textGone()
                 searchView.clearFocus()
                 return true
             }
